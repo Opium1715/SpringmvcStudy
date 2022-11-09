@@ -1,0 +1,31 @@
+.row{
+
+    width: inherit;
+}
+
+.nav li{
+    margin-left: 25px;
+    float: left;
+    list-style: none;
+}
+.total{
+    float: right;
+    margin-right:30px;
+}
+.form-my input{
+    border: 1px solid  #ccc;
+    height: 30px;width: 180px;
+    float: left;
+    padding: 3px 12px;
+
+    display: block;
+
+    margin-top: 7px;
+    margin-left: 5px;
+    line-height: 31px;
+}
+.form-my label{
+    float: left;
+    margin-top:7px;
+    margin-left: 10px;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SSM.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="SSM.pojo.Customer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="SSM.pojo.Customer">
+    insert into customer (id, name, phone, 
+      address, company)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="SSM.pojo.Customer">
+    update customer
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, phone, address, company
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, phone, address, company
+    from customer
+    <trim prefix="where" suffixOverrides="and">
+      <if test="username!=null">
+        name like CONCAT('%',#{username},'%') and
+      </if>
+      <if test="phone!=null">
+        phone like CONCAT('%',#{phone},'%') and
+      </if>
+      <if test="address!=null">
+        address like CONCAT('%',#{address},'%') and
+      </if>
+      <if test="company!=null">
+        company like CONCAT('%',#{company},'%')
+      </if>
+    </trim>
+  </select>
+</mapper>

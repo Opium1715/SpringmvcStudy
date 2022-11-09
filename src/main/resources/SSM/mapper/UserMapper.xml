@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SSM.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="SSM.pojo.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="pass" jdbcType="VARCHAR" property="pass" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="SSM.pojo.User">
+    insert into user (id, name, phone, 
+      pass)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{pass,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="SSM.pojo.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, phone, pass
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, name, phone, pass
+    from user
+    <trim prefix="where" suffixOverrides="and">
+      <if test="phone!=null">
+        phone like CONCAT('%',#{phone},'%') and
+      </if>
+      <if test="name!=null">
+        name like CONCAT('%',#{name},'%')
+      </if>
+    </trim>
+  </select>
+
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from user
+    where phone = #{phone}
+  </select>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SSM.mapper.BookMapper">
+  <resultMap id="BaseResultMap" type="SSM.pojo.Book">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="pdate" jdbcType="TIMESTAMP" property="pdate" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="image" jdbcType="VARCHAR" property="imageName" />
+  </resultMap>
+
+  <resultMap id="WithTypeResultMap" type="SSM.pojo.Book">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="pdate" jdbcType="TIMESTAMP" property="pdate" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="image" jdbcType="VARCHAR" property="imageName" />
+    <association property="type" javaType="SSM.pojo.Type">
+      <result column="typename" jdbcType="VARCHAR" property="typename"/>
+    </association>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="SSM.pojo.Book">
+    insert into book (id, name, ename, 
+      author, publisher, pdate, 
+      isbn, price, address, 
+      brief, typeid, image
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{pdate,jdbcType=TIMESTAMP}, 
+      #{isbn,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{brief,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, #{imageName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="SSM.pojo.Book">
+    update book
+    set name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      pdate = #{pdate,jdbcType=TIMESTAMP},
+      isbn = #{isbn,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      brief = #{brief,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER},
+      image = #{imageName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, ename, author, publisher, pdate, isbn, price, address, brief, typeid, 
+    image
+    from book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="WithTypeResultMap">
+    select book.id, name, ename, author, publisher, pdate, isbn, price, address, brief, typeid, typename,
+    image
+    from book
+        inner join type
+            on book.typeid = type.id
+    <trim prefix="where" suffixOverrides="and">
+      <if test="type!=null">
+        type.typename like CONCAT('%',#{type},'%') and
+      </if>
+      <if test="name!=null">
+        (name like CONCAT('%',#{name},'%') or ename like CONCAT('%',#{name},'%'))
+      </if>
+    </trim>
+  </select>
+</mapper>

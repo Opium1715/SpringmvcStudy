@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/* 基础样式 */
+html {font-size: 62.5%;}
+body {color: #888;font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";font-size: 1.6rem;text-align: center;}
+body > * {margin: auto;text-align: left;}
+* {border-collapse: collapse;box-sizing: border-box;font-style: normal;list-style: none;margin: 0;padding: 0;text-decoration: none;transition: all .2s linear 0s;}
+th,td,input,select,textarea,button,.btn {font-size: 1.4rem;}
+::placeholder {color: #b3b3b3;}
+.before-shadow {position: relative;transition: all 0s linear 0s;}
+.before-shadow > * {background: #fff;position: relative;z-index: 2;}
+.before-shadow:before {background: rgba(0,0,0,.3);color: transparent;content: "0";height: 100vh;left: 50%;position: fixed;top: 50%;width: 100vw;transform: translate(-50%, -50%);}
+.border-none {border: none !important;}
+.block {display: block !important;height: auto;max-height: none;}
+.clear {clear: both !important;}
+.clear-left {clear: left !important;}
+.clear-right {clear: right !important;}
+.cursor-default,.default {cursor: default !important;}
+.cursor-pointer,.pointer {cursor: pointer !important;}
+.float-none {float: none;}
+.hide,.hidden {display: none !important;}
+.inline {display: inline-block !important;width: 100%;}
+.left {float: left !important;}
+.over-hidden {overflow: hidden;}
+.relative {position: relative !important;}
+.right {float: right !important;}
+.show {display: block !important;}
+.text-center,.tC {text-align: center !important;}
+.text-left,.tL {text-align: left !important;}
+.text-right,.tR {text-align: right !important;}
+/* 内容容器 */
+.container {background: #fff;height: 90vh;width: 80%;}
+/* 标签页 */
+.tabs {background: #fcfcfc;display: inline-block;width: 100%;}
+.tabs .tab {background: #f8f8f8;border: 1px solid #ccc;border-radius: 4px 4px 0 0;color: #444;display: block;float: left;height: 36px;line-height: 36px;padding: 0 18px;}
+.tabs .tab:first-child {margin-left: 12px;}
+.tabs .tab:not(.cur):hover {background: #f3f3f3;}
+.tabs .tab.cur {background: #008260;border-color: #026c50;color: #fff;}
+.tabs .tab-content {background: #fff;border-top: 1px solid #f3f3f3;clear: left;display: none;margin-top: -1px;min-height: 600px;}
+.tabs .tab-content.cur {display: block;}
+/* 数据表单 */
+button,.btn {color: #7A7A7A;height: 30px;padding: 3px 24px;}
+button.primary:hover{background: #026c50;border-color: #026c50;}
+button.secondary{background: #0cb88b;border-color: #0cb88b;color: #fff;}
+button.secondary:hover{background: #11a57e;border-color: #11a57e;}
+button.success{background-color: #008260;border-color: #33d8ad;color: #fff;border: 0px !important;}
+button.success:hover{background-color: #22c79c;border-color: #22c79c;}
+button.danger:hover {background: #e56541;border-color: #e56541;}
+.form,.search-form {border-bottom: 1px solid #ccc;margin-bottom: 10px;text-align: right;}
+.form{border-bottom: none !important;}
+.form .form-item,.form .text-item,.form .file-item,.form .btns-item {height: 39px;margin: 6px 0;padding: 3px 12.5%;}
+.form .text-item,.form .file-item {height: 96px;}
+.form .form-item label,.form .text-item label,.form .file-item label {background: #fff;border: 1px solid #ccc;border-right: 0;color: #888;display: block;float: left;height: 33px;line-height: 31px;width: 11%;text-align: left;padding-left: 15px;}
+.form .form-item input,.form .form-item select {background: #fff;border: 1px solid #ccc;border-left: 0;display: block;filter: none;float: left;height: 33px;line-height: 31px;padding: 3px 12px;width: 60%;}
+.form .form-item span,.form .text-item span {display: block;float: left;height: 33px;line-height: 33px;max-width: 20%;overflow: hidden;padding: 0 12px;text-overflow: ellipsis;white-space: nowrap;}
+.form .text-item textarea {background: #fff;border: 1px solid #ccc;border-left: 0;display: block;filter: none;float: left;height: 90px;padding: 3px 12px;resize: none;width: 60%;}
+.form .text-item label,.form .file-item label {height: 90px;}
+.form .file-item label {border-color: #fff;}
+/*.form .file-item input {display: none;}*/
+.form .file-item > div {border: 1px solid #fff;border-left: 0;display: block;filter: none;float: left;height: 90px;padding: 3px 12px;width: 60%;}
+.form .file-item > div .img,.form .file-item > div .file-wrap {display: block;float: left;height: 88px;margin-right: 12px;position: relative;}
+.form .file-item > div .img:not(:last-child):after {background: red;border-radius: 50%;color: #fff;content: '-';height: 18px;line-height: 16px;position: absolute;right: -6px;text-align: center;top: -6px;width: 18px;}
+.form .file-item > div .img img {border: 1px solid #ccc;height: 88px;}
+.search-form .form-item,.search-form .btns-item {display: inline-flex;padding: 5px;width: auto;align-items: center;margin-left: 2%;position: relative;}
+.search-form .form-item > *,.search-form .btns-item > * {float: left;}
+.search-form .form-item > *:not(label) {margin: 0 5px;}
+.search-form .form-item label {padding-right: 5px;width: auto !important;}
+.search-form .form-item input,.search-form .form-item select {border: 1px solid #ccc;height: 30px;width: 240px !important;padding: 3px 12px;}
+.search-form .form-selectall{float: left !important;margin-left: 0px !important;line-height: 35px;}
+.search-form .form-selectall input{width: 17px !important;margin-right: 10px;padding: 0px !important;height: 17px !important;}
+.form.min-form .form-item input,.form.min-form .form-item select,.form.min-form .form-item textarea {width: 265px !important;}
+/* 数据表格 */
+table {width: 100%;}
+table th {background: #efefef;font-weight: bold;height: 36px;text-align: center;}
+table th,table td {padding: 2px 3px;}
+table tbody tr:nth-child(2n) {background: #efefef;height: 36px;}
+table tbody tr:nth-child(2n + 1) {background: #ffffff;height: 48px;}
+table tbody tr td:last-child{display: flex;}
+table tbody tr:nth-child(2n + 1) td:last-child{padding-top: 9px;}
+table td .btn,.table .td .btn {font-size: 12px;height: 22px;line-height: 16px;margin: 0 3px;padding: 2px 4px;}
+table td a:not(.btn),.table .td a:not(.btn) {text-decoration: underline;}
+/* 分页部分 */
+.pager {height: 36px;line-height: 36px;margin-top: 6px;}
+.pager .info {float: left;font-size: 14px;}
+.pager .btns {float: right;padding: 4px 0;}
+.pager .btns > * {cursor: pointer;display: block;float: left;height: 28px;line-height: 28px;margin: 0;margin-left: 6px;padding: 0 10px;}
+.pager .btns > *.cur {background: #008260;border-color: #5a98de;color: #fff;}
+.pager .btns > *:not(.cur):hover {background: #f8f8f8;border-color: #f8f8f8;color: #888;}
+/* 页面弹窗 */
+.dialog {background: #fff;border: 1px solid #008260;border-radius: 2px;box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 50px;color: #fff;display: none;height: 480px;left: 50%;margin-left: -340px;margin-top: -240px;overflow: hidden;position: fixed;top: 50%;transition: all 0s linear 0s;width: 680px;z-index: 2001;}
+.dialog.dialog-page {height: 580px;width: 720px;margin-left: -360px;margin-top: -290px;}
+.dialog:before {background: rgba(0,0,0,.3);bottom: 0;color: transparent;content: "0";left: 0;position: fixed;right: 0; top: 0;}
+.dialog.max {height: 100%;left: 50% !important;margin: 0 !important;position: absolute;top: 50% !important;transform:translateX(-50%) translateY(-50%);width: 100%;}
+.dialog.max .body {height: calc(100% - 102px) !important;}
+.dialog > * {position: relative;z-index: 1;}
+.dialog .header {background: #008260;border-bottom: 1px solid #008260;height: 48px;line-height: 47px;padding-left: 48px;text-align: center;}
+.dialog .header .switch {background: url(../images/hui/icon-winx0.png) center no-repeat;cursor: pointer;display: block;float: right;height: 36px;margin: 6px 0px 6px -36px;width: 36px;}
+.dialog.max .header .switch {background-size: 32px 32px;}
+.dialog .header .switch:hover {background-image: url(../images/hui/icon-winx1.png);}
+.dialog .header .switch.max {background-image: url(../images/hui/icon-winn0.png);}
+.dialog .header .switch.max:hover {background-image: url(../images/hui/icon-winn1.png);}
+.dialog .header .close {background: url(../images/icons/icon-close.png) center no-repeat;cursor: pointer;display: block;float: right;font-size: 24px;font-weight: bold;height: 36px;line-height: 36px;margin: 6px 0;width: 36px;}
+.dialog .header .close:hover {opacity: .6;}
+.dialog .body {background: #fff;height: 378px;overflow: auto;padding: 30px;}
+.dialog.dialog-page .body {height: 530px;}
+.dialog .footer {background: #fff;height: 54px;padding: 8px;text-align: center;}
+.dialog:not(.max) .form-item:not(.btns-item) > *:first-child,.dialog:not(.max) .text-item:not(.btns-item) > *:first-child,.dialog:not(.max) .file-item:not(.btns-item) > *:first-child {text-align: left;width: 150px !important;}
+.dialog:not(.max) .form-item  input:not([type=radio]):not([type=checkbox]),.dialog:not(.max) .form-item > select,.dialog:not(.max) .text-item > textarea {width: 284px;}
+.dialog:not(.max) .form .btns-item {width: 620px;}
+/* 栅格系统(非响应式) */
+.items,.items-10 {clear: left;display: inline-block;width: 100%;overflow: hidden;}
+.items > *,.items-10 > * {float: left;margin: 0 !important;min-height: 1px;padding: 0 !important;position: relative;z-index: 0;}
+.item-1 {width: 8.33333% !important;}
+.item-2 {width: 16.66666% !important;}
+.item-3 {width: 24.99999% !important;}
+.item-4 {width: 33.33333% !important;}
+.item-5 {width: 41.66666% !important;}
+.item-6 {width: 50.00000% !important;}
+.item-7 {width: 58.33333% !important;}
+.item-8 {width: 66.66666% !important;}
+.item-9 {width: 74.99999% !important;}
+.item-10 {width: 83.33333% !important;}
+.item-11 {width: 91.66666% !important;}
+.item-12 {width: 100.00000% !important;}
+.items-10 > .item-10 {width: 10% !important;}
+.items-10 > .item-2 {width: 20% !important;}
+.items-10 > .item-3 {width: 30% !important;}
+.items-10 > .item-4 {width: 40% !important;}
+.items-10 > .item-5 {width: 50% !important;}
+.items-10 > .item-6 {width: 60% !important;}
+.items-10 > .item-7 {width: 70% !important;}
+.items-10 > .item-8 {width: 80% !important;}
+.items-10 > .item-9 {width: 90% !important;}
+.items-10 > .item-10 {width: 100% !important;}
+.items-10 > .item-11 {width: 100% !important;}
+.items-10 > .item-12 {width: 100% !important;}
